@@ -90,8 +90,8 @@ const Login = () => {
       >
         {/* Logo */}
         <div className="text-center mb-6">
-          <div className="w-10 h-10 bg-blue-600 rounded-xl mx-auto flex items-center justify-center text-white font-bold text-sm">
-            KT
+          <div className="w-15 h-10 bg-blue-600 rounded-xl mx-auto flex items-center justify-center text-white font-bold text-sm">
+            KTPMS
           </div>
 
           <h1 className="text-2xl font-bold text-white mt-4">

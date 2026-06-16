@@ -7,21 +7,25 @@ const IntroductionPage = () => {
   const navItems = [
   {
     title: "Features",
+    path: "/features",
     description:
       "Powerful project tracking, task management, team collaboration, analytics, and reporting tools.",
   },
   {
     title: "How it works",
+    path: "/how-it-works",
     description:
       "Create projects, assign tasks, monitor progress, and deliver results through a streamlined workflow.",
   },
   {
     title: "Roles",
+    path: "/roles",
     description:
       "Separate permissions for Administrators, Project Managers, Team Members, and Clients.",
   },
   {
     title: "About",
+    path: "/about",
     description:
       "A modern project management platform built to help organizations plan, collaborate, and succeed.",
   },
@@ -49,12 +53,12 @@ const IntroductionPage = () => {
         <div className="hidden md:flex items-center gap-7">
           {navItems.map((item) => (
             <div key={item.title} className="relative group">
-              <a
-                href={`#${item.title.toLowerCase().replace(/ /g, "-")}`}
+              <Link
+                to={`#${item.title.toLowerCase().replace(/ /g, "-")}`}
                 className="text-sm text-slate-300 font-medium hover:text-white transition-colors duration-200"
               >
                 {item.title}
-              </a>
+              </Link>
 
               <div className="absolute left-1/2 top-10 z-50 w-72 -translate-x-1/2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
                 <div className="bg-[#111827] border border-slate-700 rounded-xl p-4 shadow-2xl">
@@ -105,14 +109,14 @@ const IntroductionPage = () => {
         {menuOpen && (
           <div className="absolute top-16 left-0 right-0 bg-[#0D1526] border-b border-blue-900/20 px-6 py-4 flex flex-col gap-3 md:hidden">
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.title}
-                href={`#${item.title.toLowerCase().replace(/ /g, '-')}`}
+                to={`#${item.title.toLowerCase().replace(/ /g, '-')}`}
                 className="text-sm text-slate-300 font-medium hover:text-white transition-colors"
                 onClick={() => setMenuOpen(false)}
               >
                 {item.title}
-              </a>
+              </Link>
             ))}
             <hr className="border-blue-900/20" />
             <Link
