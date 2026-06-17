@@ -1,72 +1,75 @@
 import React from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import ThemeToggle from './ThemeToggle'
+import Features from './Features'
+import HowItWorks from './HowItWorks'
+import Roles from './Roles'
+import About from './About'
 
 const IntroductionPage = () => {
   const [menuOpen, setMenuOpen] = useState(false)
   const navItems = [
   {
     title: "Features",
-    path: "/features",
+    path: "#features",
     description:
       "Powerful project tracking, task management, team collaboration, analytics, and reporting tools.",
   },
   {
     title: "How it works",
-    path: "/how-it-works",
+    path: "#how-it-works",
     description:
       "Create projects, assign tasks, monitor progress, and deliver results through a streamlined workflow.",
   },
   {
     title: "Roles",
-    path: "/roles",
+    path: "#roles",
     description:
       "Separate permissions for Administrators, Project Managers, Team Members, and Clients.",
   },
   {
     title: "About",
-    path: "/about",
+    path: "#about",
     description:
       "A modern project management platform built to help organizations plan, collaborate, and succeed.",
   },
 ];
 
   return (
-    <div className="min-h-screen bg-[#090E1A] flex flex-col overflow-hidden">
+    <div className="min-h-screen bg-white dark:bg-[#090E1A] flex flex-col overflow-hidden transition-colors duration-300">
 
       {/* ─── NAVBAR ─── */}
-      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-[5%] h-16 bg-[#090E1A]/85 backdrop-blur-md border-b border-blue-900/20">
+      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-[5%] h-16 bg-white/85 dark:bg-[#090E1A]/85 backdrop-blur-md border-b border-slate-200 dark:border-blue-900/20">
 
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2.5">
+        <a href="#top" className="flex items-center gap-2.5">
           <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-extrabold text-sm tracking-tight">
             KT
           </div>
-          <span className="text-white font-bold text-lg tracking-tight">
+          <span className="text-slate-900 dark:text-white font-bold text-lg tracking-tight">
             Kabul<span className="text-orange-500">Track</span>
           </span>
-        </Link>
-
-        {/*tooltips*/}
+        </a>
 
         {/* Desktop Nav Links */}
         <div className="hidden md:flex items-center gap-7">
           {navItems.map((item) => (
             <div key={item.title} className="relative group">
-              <Link
-                to={`#${item.title.toLowerCase().replace(/ /g, "-")}`}
-                className="text-sm text-slate-300 font-medium hover:text-white transition-colors duration-200"
+              <a
+                href={item.path}
+                className="text-sm text-slate-600 dark:text-slate-300 font-medium hover:text-slate-900 dark:hover:text-white transition-colors duration-200"
               >
                 {item.title}
-              </Link>
+              </a>
 
               <div className="absolute left-1/2 top-10 z-50 w-72 -translate-x-1/2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                <div className="bg-[#111827] border border-slate-700 rounded-xl p-4 shadow-2xl">
-                  <h3 className="font-semibold text-white mb-2">
+                <div className="bg-white dark:bg-[#111827] border border-slate-200 dark:border-slate-700 rounded-xl p-4 shadow-2xl">
+                  <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
                     {item.title}
                   </h3>
 
-                  <p className="text-sm text-slate-400">
+                  <p className="text-sm text-slate-500 dark:text-slate-400">
                     {item.description}
                   </p>
                 </div>
@@ -77,9 +80,10 @@ const IntroductionPage = () => {
 
         {/* Desktop CTA Buttons */}
         <div className="hidden md:flex items-center gap-2.5">
+          <ThemeToggle />
           <Link
             to="/login"
-            className="px-4 py-2 text-sm font-semibold text-white border border-white/30 rounded-lg hover:border-white/60 hover:bg-white/10 transition-all duration-200"
+            className="px-4 py-2 text-sm font-semibold text-slate-900 dark:text-white border border-slate-300 dark:border-white/30 rounded-lg hover:border-slate-500 dark:hover:border-white/60 hover:bg-slate-100 dark:hover:bg-white/10 transition-all duration-200"
           >
             Log in
           </Link>
@@ -92,36 +96,39 @@ const IntroductionPage = () => {
         </div>
 
         {/* Mobile Hamburger */}
-        <button
-          className="md:hidden text-slate-300 hover:text-white transition-colors"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            {menuOpen
-              ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            }
-          </svg>
-        </button>
+        <div className="md:hidden flex items-center gap-2">
+          <ThemeToggle />
+          <button
+            className="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {menuOpen
+                ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              }
+            </svg>
+          </button>
+        </div>
 
         {/* Mobile Dropdown */}
         {menuOpen && (
-          <div className="absolute top-16 left-0 right-0 bg-[#0D1526] border-b border-blue-900/20 px-6 py-4 flex flex-col gap-3 md:hidden">
+          <div className="absolute top-16 left-0 right-0 bg-white dark:bg-[#0D1526] border-b border-slate-200 dark:border-blue-900/20 px-6 py-4 flex flex-col gap-3 md:hidden">
             {navItems.map((item) => (
-              <Link
+              <a
                 key={item.title}
-                to={`#${item.title.toLowerCase().replace(/ /g, '-')}`}
-                className="text-sm text-slate-300 font-medium hover:text-white transition-colors"
+                href={item.path}
+                className="text-sm text-slate-600 dark:text-slate-300 font-medium hover:text-slate-900 dark:hover:text-white transition-colors"
                 onClick={() => setMenuOpen(false)}
               >
                 {item.title}
-              </Link>
+              </a>
             ))}
-            <hr className="border-blue-900/20" />
+            <hr className="border-slate-200 dark:border-blue-900/20" />
             <Link
               to="/login"
-              className="text-sm font-semibold text-white text-center border border-white/30 px-4 py-2 rounded-lg hover:bg-white/10 transition-colors"
+              className="text-sm font-semibold text-slate-900 dark:text-white text-center border border-slate-300 dark:border-white/30 px-4 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-white/10 transition-colors"
               onClick={() => setMenuOpen(false)}
             >
               Log in
@@ -138,34 +145,34 @@ const IntroductionPage = () => {
       </nav>
 
       {/* ─── HERO ─── */}
-      <section className="relative flex-1 flex flex-col items-center justify-center px-6 md:px-[5%] pt-16 overflow-hidden">
+      <section id="top" className="relative flex-1 flex flex-col items-center justify-center px-6 md:px-[5%] pt-16 overflow-hidden">
 
         {/* Background grid */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(37,99,235,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(37,99,235,0.04)_1px,transparent_1px)] bg-[size:48px_48px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(37,99,235,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(37,99,235,0.06)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(37,99,235,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(37,99,235,0.04)_1px,transparent_1px)] bg-[size:48px_48px]" />
 
         {/* Glow blobs */}
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[300px] h-[150px] bg-orange-500/5 rounded-full blur-3xl pointer-events-none" />
 
         {/* Content */}
-        <div className="relative z-10 flex flex-col items-center text-center max-w-3xl">
+        <div className="relative z-10 flex flex-col items-center text-center max-w-3xl py-16">
 
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500/25 text-orange-400 text-xs font-semibold px-3 py-1.5 rounded-full mb-8 uppercase tracking-wide">
+          <div className="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500/25 text-orange-500 dark:text-orange-400 text-xs font-semibold px-3 py-1.5 rounded-full mb-8 uppercase tracking-wide">
             <span className="w-1.5 h-1.5 bg-orange-400 rounded-full animate-pulse" />
             Built for Kabul IT teams
           </div>
 
           {/* Headline */}
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.08] tracking-tight mb-5">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-slate-900 dark:text-white leading-[1.08] tracking-tight mb-5">
             Manage projects.{' '}
-            <span className="text-blue-500">Track issues.</span>{' '}
+            <span className="text-blue-600 dark:text-blue-500">Track issues.</span>{' '}
             Ship{' '}
             <span className="text-orange-500">faster.</span>
           </h1>
 
           {/* Subtext */}
-          <p className="text-lg md:text-xl text-slate-400 leading-relaxed max-w-xl mb-10">
+          <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl mb-10">
             KabulTrack helps Kabul IT firms plan sprints, log bugs, assign tasks,
             and ship better software — all in one place.
           </p>
@@ -178,36 +185,42 @@ const IntroductionPage = () => {
             >
               Get started for free
             </Link>
-            <Link
-              to="/login"
-              className="px-7 py-3.5 text-base font-semibold text-white border border-white/30 rounded-xl hover:border-white/60 hover:bg-white/[0.06] transition-all duration-200"
+            <a
+              href="#features"
+              className="px-7 py-3.5 text-base font-semibold text-slate-900 dark:text-white border border-slate-300 dark:border-white/30 rounded-xl hover:border-slate-500 dark:hover:border-white/60 hover:bg-slate-100 dark:hover:bg-white/[0.06] transition-all duration-200"
             >
-              Log in to workspace →
-            </Link>
+              View features →
+            </a>
           </div>
 
           {/* Stats */}
           <div className="flex flex-wrap items-center justify-center gap-10 md:gap-16">
             <div className="text-center">
-              <p className="text-2xl font-bold text-white">500<span className="text-orange-500">+</span></p>
-              <p className="text-sm text-slate-500 mt-1">Issues tracked</p>
+              <p className="text-2xl font-bold text-slate-900 dark:text-white">500<span className="text-orange-500">+</span></p>
+              <p className="text-sm text-slate-500 dark:text-slate-500 mt-1">Issues tracked</p>
             </div>
             <div className="text-center">
-              <p className="text-2xl font-bold text-white">12<span className="text-orange-500">+</span></p>
-              <p className="text-sm text-slate-500 mt-1">Teams onboarded</p>
+              <p className="text-2xl font-bold text-slate-900 dark:text-white">12<span className="text-orange-500">+</span></p>
+              <p className="text-sm text-slate-500 dark:text-slate-500 mt-1">Teams onboarded</p>
             </div>
             <div className="text-center">
-              <p className="text-2xl font-bold text-white">4<span className="text-orange-500">x</span></p>
-              <p className="text-sm text-slate-500 mt-1">Faster sprints</p>
+              <p className="text-2xl font-bold text-slate-900 dark:text-white">4<span className="text-orange-500">x</span></p>
+              <p className="text-sm text-slate-500 dark:text-slate-500 mt-1">Faster sprints</p>
             </div>
           </div>
 
         </div>
       </section>
 
+      {/* ─── SECTIONS (revealed when nav items are clicked) ─── */}
+      <Features />
+      <HowItWorks />
+      <Roles />
+      <About />
+
       {/* ─── FOOTER ─── */}
-      <div className="relative z-10 text-center py-6">
-        <p className="text-xs text-slate-600">
+      <div className="relative z-10 text-center py-6 bg-white dark:bg-[#090E1A] border-t border-slate-200 dark:border-blue-900/20">
+        <p className="text-xs text-slate-400 dark:text-slate-600">
           © 2025 KabulTrack · Built for Kabul IT teams
         </p>
       </div>

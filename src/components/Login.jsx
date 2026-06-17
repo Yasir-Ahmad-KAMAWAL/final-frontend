@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import ThemeToggle from "./ThemeToggle";
+import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -83,10 +85,16 @@ const Login = () => {
   };
 
   return (
-    <div className="fixed inset-0 bg-[#090E1A] flex items-center justify-center px-4 py-8">
+    <div className="fixed inset-0 bg-white dark:bg-[#090E1A] flex items-center justify-center px-4 py-8 transition-colors duration-300">
+
+      {/* Toggle button - top right corner */}
+      <div className="absolute top-5 right-5 z-10">
+        <ThemeToggle />
+      </div>
+
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-sm bg-[#111827] border border-slate-800 rounded-2xl p-6 shadow-xl"
+        className="w-full max-w-sm bg-slate-50 dark:bg-[#111827] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-xl"
       >
         {/* Logo */}
         <div className="text-center mb-6">
@@ -94,25 +102,25 @@ const Login = () => {
             KTPMS
           </div>
 
-          <h1 className="text-2xl font-bold text-white mt-4">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white mt-4">
             Welcome Back
           </h1>
 
-          <p className="text-slate-400 text-sm mt-1">
+          <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">
             Login to your KabulTrack workspace
           </p>
         </div>
 
         {/* Server Error */}
         {serverError && (
-          <div className="mb-4 bg-red-500/10 border border-red-500 text-red-400 p-3 rounded-lg text-sm">
+          <div className="mb-4 bg-red-500/10 border border-red-500 text-red-500 dark:text-red-400 p-3 rounded-lg text-sm">
             {serverError}
           </div>
         )}
 
         {/* Email */}
         <div className="mb-4">
-          <label className="text-slate-300 text-sm">
+          <label className="text-slate-700 dark:text-slate-300 text-sm">
             Email Address
           </label>
 
@@ -122,15 +130,15 @@ const Login = () => {
             value={formData.email}
             onChange={handleChange}
             placeholder="Enter your email"
-            className={`w-full mt-2 px-3 py-2 bg-[#0D1526] rounded-lg text-white text-sm outline-none border transition ${
+            className={`w-full mt-2 px-3 py-2 bg-white dark:bg-[#0D1526] rounded-lg text-slate-900 dark:text-white text-sm outline-none border transition ${
               errors.email
                 ? "border-red-500"
-                : "border-slate-700 focus:border-blue-500"
+                : "border-slate-300 dark:border-slate-700 focus:border-blue-500"
             }`}
           />
 
           {errors.email && (
-            <p className="text-red-400 text-sm mt-1">
+            <p className="text-red-500 dark:text-red-400 text-sm mt-1">
               {errors.email}
             </p>
           )}
@@ -138,7 +146,7 @@ const Login = () => {
 
         {/* Password */}
         <div className="mb-4">
-          <label className="text-slate-300 text-sm">
+          <label className="text-slate-700 dark:text-slate-300 text-sm">
             Password
           </label>
 
@@ -149,24 +157,24 @@ const Login = () => {
               value={formData.password}
               onChange={handleChange}
               placeholder="Enter password"
-              className={`w-full px-3 py-2 bg-[#0D1526] rounded-lg text-white text-sm outline-none border transition ${
+              className={`w-full px-3 py-2 bg-white dark:bg-[#0D1526] rounded-lg text-slate-900 dark:text-white text-sm outline-none border transition ${
                 errors.password
                   ? "border-red-500"
-                  : "border-slate-700 focus:border-blue-500"
+                  : "border-slate-300 dark:border-slate-700 focus:border-blue-500"
               }`}
             />
 
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-400 text-xs"
             >
               {showPassword ? "Hide" : "Show"}
             </button>
           </div>
 
           {errors.password && (
-            <p className="text-red-400 text-sm mt-1">
+            <p className="text-red-500 dark:text-red-400 text-sm mt-1">
               {errors.password}
             </p>
           )}
@@ -174,7 +182,7 @@ const Login = () => {
 
         {/* Remember Me */}
         <div className="flex items-center justify-between mb-6 text-sm gap-3">
-          <label className="flex items-center gap-2 text-slate-400 cursor-pointer">
+          <label className="flex items-center gap-2 text-slate-600 dark:text-slate-400 cursor-pointer">
             <input
               type="checkbox"
               name="rememberMe"
@@ -187,7 +195,7 @@ const Login = () => {
 
           <Link
             to="/forgot-password"
-            className="text-sm text-blue-500 hover:text-blue-400"
+            className="text-sm text-blue-600 dark:text-blue-500 hover:text-blue-500 dark:hover:text-blue-400"
           >
             Forgot Password?
           </Link>
@@ -199,8 +207,8 @@ const Login = () => {
           disabled={loading}
           className={`w-full py-2 rounded-lg font-semibold text-white text-sm transition ${
             loading
-              ? "bg-orange-400 cursor-not-allowed"
-              : "bg-orange-500 hover:bg-orange-600"
+              ? "bg-blue-400 cursor-not-allowed"
+              : "bg-blue-500 hover:bg-blue-600"
           }`}
         >
           {loading ? "Logging In..." : "Login"}
@@ -208,25 +216,26 @@ const Login = () => {
 
         {/* Divider */}
         <div className="flex items-center gap-3 my-6">
-          <div className="flex-1 h-[1px] bg-slate-700"></div>
-          <span className="text-slate-500 text-sm">OR</span>
-          <div className="flex-1 h-[1px] bg-slate-700"></div>
+          <div className="flex-1 h-[1px] bg-slate-300 dark:bg-slate-700"></div>
+          <span className="text-slate-400 dark:text-slate-500 text-sm">OR</span>
+          <div className="flex-1 h-[1px] bg-slate-300 dark:bg-slate-700"></div>
         </div>
 
         {/* Google Login */}
         <button
-          type="button"
-          className="w-full border border-slate-700 py-3 rounded-lg text-white hover:bg-slate-800 transition"
-        >
-          Continue with Google
-        </button>
+  type="button"
+  className="w-full flex items-center justify-center gap-3 border border-slate-300 dark:border-slate-700 py-3 rounded-lg text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+>
+  <FcGoogle className="text-xl" />
+  <span>Continue with Google</span>
+</button>
 
         {/* Signup */}
-        <p className="text-center text-slate-400 mt-6">
+        <p className="text-center text-slate-600 dark:text-slate-400 mt-6">
           Don't have an account?{" "}
           <Link
             to="/signup"
-            className="text-orange-500 hover:text-orange-400"
+            className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
           >
             Sign Up
           </Link>

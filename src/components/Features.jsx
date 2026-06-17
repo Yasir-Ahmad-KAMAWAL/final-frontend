@@ -26,57 +26,52 @@ const features = [
     desc: "Generate detailed reports for projects, tasks, and team progress.",
     icon: "📄",
   },
+  {
+    title: "Role-Based Access",
+    desc: "Admin, Project Manager, Developer, and Tester — each with the right permissions.",
+    icon: "🔐",
+  },
 ];
 
 const Features = () => {
   return (
-    <div className="min-h-screen bg-[#090E1A] text-white px-6 py-16">
-      {/* Hero Section */}
-      <div className="text-center max-w-3xl mx-auto">
-        <h1 className="text-4xl md:text-5xl font-bold">
-          Powerful <span className="text-orange-500">Features</span> for Your Workflow
-        </h1>
-
-        <p className="text-slate-400 mt-4 text-sm md:text-base">
-          Manage projects, tasks, and teams efficiently with a modern dashboard built for productivity.
+    <section
+      id="features"
+      className="py-24 px-6 md:px-[5%] bg-slate-50 dark:bg-[#060B16] transition-colors duration-300"
+    >
+      <div className="text-center max-w-2xl mx-auto">
+        <p className="text-orange-500 dark:text-orange-400 text-xs font-semibold uppercase tracking-widest mb-3">
+          Features
+        </p>
+        <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+          Everything your team needs
+        </h2>
+        <p className="text-slate-600 dark:text-slate-400 text-base">
+          From small startups to large Kabul IT firms, KabulTrack scales with your team and your workflow.
         </p>
       </div>
 
-      {/* Features Grid */}
-      <div className="mt-12 max-w-6xl mx-auto grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-14 max-w-6xl mx-auto grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {features.map((item, index) => (
           <div
             key={index}
-            className="bg-[#111827] border border-slate-800 rounded-2xl p-6 hover:border-blue-500 transition"
+            className="bg-white dark:bg-[#0D1526] border border-slate-200 dark:border-blue-900/20 rounded-2xl p-6 hover:border-blue-400 dark:hover:border-blue-500/40 hover:-translate-y-0.5 transition-all duration-200"
           >
-            <div className="text-3xl mb-3">{item.icon}</div>
+            <div className="w-11 h-11 rounded-xl bg-blue-100 dark:bg-blue-500/15 flex items-center justify-center text-xl mb-4">
+              {item.icon}
+            </div>
 
-            <h3 className="text-lg font-semibold text-white">
+            <h3 className="text-base font-semibold text-slate-900 dark:text-white mb-2">
               {item.title}
             </h3>
 
-            <p className="text-slate-400 text-sm mt-2">
+            <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
               {item.desc}
             </p>
           </div>
         ))}
       </div>
-
-      {/* Bottom CTA */}
-      <div className="mt-16 text-center">
-        <h2 className="text-2xl font-bold">
-          Ready to boost your productivity?
-        </h2>
-
-        <p className="text-slate-400 mt-2">
-          Start managing your projects smarter with KabulTrack.
-        </p>
-
-        <button className="mt-6 bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold transition">
-          Get Started
-        </button>
-      </div>
-    </div>
+    </section>
   );
 };
 
