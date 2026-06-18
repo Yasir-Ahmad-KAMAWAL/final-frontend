@@ -43,22 +43,23 @@ const IntroductionPage = () => {
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-[5%] h-16 bg-white/85 dark:bg-[#090E1A]/85 backdrop-blur-md border-b border-slate-200 dark:border-blue-900/20">
 
         {/* Logo */}
-        <a href="#top" className="flex items-center gap-2.5">
-          <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-extrabold text-sm tracking-tight">
-            KT
-          </div>
-          <span className="text-slate-900 dark:text-white font-bold text-lg tracking-tight">
-            Kabul<span className="text-orange-500">Track</span>
-          </span>
+        <a href="#top" className="flex items-center gap-2.5 shrink-0">
+          <svg width="270" height="78" viewBox="0 0 270 78" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[150px] md:w-[190px] h-auto">
+            <path d="M4 20 L22 39 L4 58"  stroke="#1D4ED8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.25"/>
+            <path d="M14 20 L32 39 L14 58" stroke="#1D4ED8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.55"/>
+            <path d="M24 20 L42 39 L24 58" stroke="#F97316" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <text x="58" y="36" font-family="-apple-system,BlinkMacSystemFont,'Inter',sans-serif" font-size="22" font-weight="700" fill="#1D4ED8" letter-spacing="-0.4">Kabul<tspan fill="#F97316">Track</tspan></text>
+            <text x="59" y="53" font-family="-apple-system,BlinkMacSystemFont,'Inter',sans-serif" font-size="9" fill="#888" letter-spacing="0.2em">FORWARD MOTION · KT</text>
+          </svg>
         </a>
 
         {/* Desktop Nav Links */}
-        <div className="hidden md:flex items-center gap-7">
+        <div className="hidden md:flex flex-1 items-center justify-center gap-5 lg:gap-7 px-4 min-w-0">
           {navItems.map((item) => (
-            <div key={item.title} className="relative group">
+            <div key={item.title} className="relative group shrink-0">
               <a
                 href={item.path}
-                className="text-sm text-slate-600 dark:text-slate-300 font-medium hover:text-slate-900 dark:hover:text-white transition-colors duration-200"
+                className="text-sm text-slate-600 dark:text-slate-300 font-medium hover:text-slate-900 dark:hover:text-white transition-colors duration-200 whitespace-nowrap"
               >
                 {item.title}
               </a>
@@ -79,17 +80,17 @@ const IntroductionPage = () => {
         </div>
 
         {/* Desktop CTA Buttons */}
-        <div className="hidden md:flex items-center gap-2.5">
+        <div className="hidden md:flex items-center gap-2.5 shrink-0">
           <ThemeToggle />
           <Link
             to="/login"
-            className="px-4 py-2 text-sm font-semibold text-slate-900 dark:text-white border border-slate-300 dark:border-white/30 rounded-lg hover:border-slate-500 dark:hover:border-white/60 hover:bg-slate-100 dark:hover:bg-white/10 transition-all duration-200"
+            className="px-4 py-2 text-sm font-semibold text-slate-900 dark:text-white border border-slate-300 dark:border-white/30 rounded-lg hover:border-slate-500 dark:hover:border-white/60 hover:bg-slate-100 dark:hover:bg-white/10 transition-all duration-200 whitespace-nowrap"
           >
             Log in
           </Link>
           <Link
             to="/signup"
-            className="px-4 py-2 text-sm font-semibold text-white bg-orange-500 rounded-lg hover:bg-orange-600 transition-all duration-200"
+            className="px-4 py-2 text-sm font-semibold text-white bg-orange-500 rounded-lg hover:bg-orange-600 transition-all duration-200 whitespace-nowrap"
           >
             Sign up free
           </Link>

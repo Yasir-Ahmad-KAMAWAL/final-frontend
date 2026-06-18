@@ -16,9 +16,15 @@ const Signup = () => {
       <div className="w-full max-w-sm bg-slate-50 dark:bg-[#111827] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-xl">
 
         <div className="text-center mb-6">
-          <div className="w-10 h-10 bg-blue-600 rounded-xl mx-auto flex items-center justify-center text-white font-bold text-sm">
-            KT
-          </div>
+          <Link to="/" className="inline-flex items-center justify-center">
+            <svg width="192" height="70" viewBox="0 4 192 70" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[170px] h-auto">
+  <path d="M4 20 L22 39 L4 58" stroke="#1D4ED8" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" fill="none" opacity="0.25"/>
+  <path d="M14 20 L32 39 L14 58" stroke="#1D4ED8" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" fill="none" opacity="0.55"/>
+  <path d="M24 20 L42 39 L24 58" stroke="#F97316" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+  <text x="58" y="36" fontFamily="-apple-system,BlinkMacSystemFont,'Inter',sans-serif" fontSize="22" fontWeight="700" fill="#1D4ED8" letterSpacing="-0.4">Kabul<tspan fill="#F97316">Track</tspan></text>
+  <text x="59" y="53" fontFamily="-apple-system,BlinkMacSystemFont,'Inter',sans-serif" fontSize="9" fill="#888" letterSpacing="0.2em">FORWARD MOTION·KT</text>
+</svg>
+          </Link>
 
           <h1 className="text-2xl font-bold text-slate-900 dark:text-white mt-4">
             Create Account
