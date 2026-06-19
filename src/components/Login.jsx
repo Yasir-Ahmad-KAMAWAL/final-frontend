@@ -187,7 +187,7 @@ export default function Login() {
   const inputErr = "border-red-500 dark:border-red-500";
 
   return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-100 dark:bg-[#060D1F] transition-colors duration-300 px-4 py-10 font-sans">
+  <div className="min-h-screen flex items-center justify-center bg-slate-100 dark:bg-[#060D1F] transition-colors duration-300 px-4 py-4 font-sans">
 
         <div className="absolute top-4 right-4 z-50">
           <ThemeToggle />
@@ -197,7 +197,7 @@ export default function Login() {
         <div className="w-full max-w-4xl flex flex-col lg:flex-row rounded-2xl overflow-hidden shadow-2xl shadow-blue-900/20 dark:shadow-blue-900/40">
 
           {/* ── LEFT: Login form ─────────────────────────────── */}
-          <div className="flex-1 bg-white dark:bg-[#0F172A] px-8 sm:px-12 py-10 flex flex-col justify-center transition-colors duration-300">
+          <div className="flex-1 bg-white dark:bg-[#0F172A] px-8 sm:px-12 py-6 flex flex-col justify-center transition-colors duration-300">
 
             {/* Logo */}
             <div className="mb-7">
@@ -330,7 +330,7 @@ export default function Login() {
           </div>
 
           {/* ── RIGHT: Feature slideshow ──────────────────────── */}
-          <div className="hidden lg:flex flex-col items-center justify-center flex-1 relative overflow-hidden bg-gradient-to-br from-blue-700 via-blue-800 to-blue-950 px-10 py-12">
+          <div className="hidden lg:flex flex-col items-center justify-center flex-1 relative overflow-hidden bg-gradient-to-br from-blue-700 via-blue-800 to-blue-950 px-8 py-8">
 
             {/* Decorative blobs */}
             <div className="absolute -top-20 -right-20 w-72 h-72 rounded-full bg-white/5 pointer-events-none"/>
