@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 
 /* ─── Logo ─────────────────────────────────────────────── */
@@ -201,7 +202,9 @@ export default function Login() {
 
             {/* Logo */}
             <div className="mb-7">
-              <Logo />
+              <Link to="/" aria-label="Go to homepage" className="inline-block">
+                <Logo />
+              </Link>
             </div>
 
             <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-1">
