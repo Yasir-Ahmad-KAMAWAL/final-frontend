@@ -1,0 +1,8 @@
+- User should be invited to the projects even if they are not registered ( they register and join and be added to the project )
+- Check issues details page ( sub issues need to be as an issue, check chat/activity system in the issue)
+- change assignees in the issue page ✅
+- proper auth errors in auth paages
+- data does not load upon login, until refresh
+- issues should not come up in my issues if i am not in its assignee
+- issues should show all issues in the project ( regardless of assignees )
+- 
