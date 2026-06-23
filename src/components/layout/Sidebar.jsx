@@ -21,10 +21,10 @@ export default function Sidebar({ mobileOpen, onClose }) {
   const { projects } = useProjects()
 
   const linkClass = ({ isActive }) =>
-    `flex items-center gap-2.5 px-2.5 py-1.5 rounded-md text-[13px] font-medium transition-colors ${
+    `flex items-center gap-2.5 px-2.5 py-1.5 rounded-md text-[13px] font-medium transition-all ${
       isActive
-        ? 'bg-[var(--bg-active)] text-[var(--text-primary)]'
-        : 'text-[var(--text-secondary)] hover:bg-[var(--bg-hover)] hover:text-[var(--text-primary)]'
+        ? 'bg-blue-500/10 ring-1 ring-blue-400/40 text-blue-400'
+        : 'text-[var(--text-secondary)] hover:bg-orange-500/10 hover:ring-1 hover:ring-orange-400/50 hover:text-orange-700'
     }`
 
   const content = (
@@ -76,7 +76,7 @@ export default function Sidebar({ mobileOpen, onClose }) {
           Your teams
         </p>
         <div className="space-y-0.5">
-          <button className="flex items-center gap-2 w-full px-2.5 py-1.5 rounded-md text-[13px] font-medium text-[var(--text-primary)] bg-[var(--bg-active)]">
+          <button className="flex items-center gap-2 w-full px-2.5 py-1.5 rounded-md text-[13px] font-medium text-blue-400 bg-blue-500/10 ring-1 ring-blue-400/40 hover:bg-orange-500/10 hover:ring-orange-400/50 hover:text-orange-700 transition-all">
             <span className="w-4 h-4 rounded bg-emerald-500/20 text-emerald-500 flex items-center justify-center text-[10px]">●</span>
             KabulTrack
           </button>
@@ -112,7 +112,7 @@ export default function Sidebar({ mobileOpen, onClose }) {
         <NavLink
           to="/settings/profile"
           onClick={onClose}
-          className="flex items-center gap-2.5 rounded-md px-1 py-1 hover:bg-[var(--bg-hover)] transition-colors"
+          className="flex items-center gap-2.5 rounded-md px-1 py-1 hover:bg-orange-500/10 hover:ring-1 hover:ring-orange-400/50 transition-all"
         >
           <Avatar name={user?.name} src={user?.avatar} size="md" />
           <div className="min-w-0 flex-1">
