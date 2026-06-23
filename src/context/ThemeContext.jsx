@@ -1,11 +1,13 @@
 import { createContext, useContext, useEffect, useState } from 'react'
+import { THEME_STORAGE_KEY } from '../utils/constants'
 
 const ThemeContext = createContext()
 
 export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState(() => {
-    const saved = localStorage.getItem('kabultrack-theme')
-    return saved || 'dark'   // default to dark since that's your brand look
+    const saved = localStorage.getItem(THEME_STORAGE_KEY)
+    if (saved === 'light' || saved === 'dark') return saved
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
   })
 
   useEffect(() => {
@@ -15,7 +17,7 @@ export function ThemeProvider({ children }) {
     } else {
       root.classList.remove('dark')
     }
-    localStorage.setItem('kabultrack-theme', theme)
+    localStorage.setItem(THEME_STORAGE_KEY, theme)
   }, [theme])
 
   const toggleTheme = () => {
