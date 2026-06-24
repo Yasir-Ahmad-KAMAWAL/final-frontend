@@ -39,56 +39,71 @@ export default function ActivityFeed({ issueId, refreshDep }) {
   }
 
   return (
-    <section>
-      <h3 className="text-sm font-semibold text-[var(--text-secondary)] mb-4">Activity</h3>
+    <section
+      className="rounded-lg p-[1.5px]"
+      style={{
+        background: 'linear-gradient(135deg, #f97316, #3b82f6)',
+        boxShadow: '0 0 18px 2px rgba(249,115,22,0.2), 0 0 32px 4px rgba(59,130,246,0.15)',
+      }}
+    >
+      <div className="rounded-lg bg-[var(--bg-main)] p-5">
+        <h3 className="text-[15px] font-semibold text-[var(--text-secondary)] mb-4">Activity</h3>
 
-      {user && (
-        <form onSubmit={handleComment} className="flex gap-3 mb-6">
-          <Avatar name={user.name} src={user.avatar} size="md" className="mt-1" />
-          <div className="flex-1">
-            <Textarea
-              rows={3}
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              placeholder="Leave a comment..."
-            />
-            <div className="flex justify-end mt-2">
-              <Button type="submit" size="sm" loading={submitting} disabled={!content.trim()}>
-                Comment
-              </Button>
-            </div>
-          </div>
-        </form>
-      )}
-
-      {loading ? (
-        <div className="space-y-4">
-          {[1, 2, 3].map((i) => (
-            <div key={i} className="flex gap-3 animate-pulse">
-              <div className="w-6 h-6 rounded-full bg-[var(--bg-hover)] shrink-0" />
-              <div className="flex-1 space-y-2">
-                <div className="h-3 w-32 rounded bg-[var(--bg-hover)]" />
-                <div className="h-12 rounded-lg bg-[var(--bg-hover)]" />
+        {user && (
+          <form onSubmit={handleComment} className="flex gap-3 mb-6">
+            <Avatar name={user.name} src={user.avatar} size="md" className="mt-1" />
+            <div className="flex-1">
+              <Textarea
+                rows={3}
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+                placeholder="Leave a comment..."
+                className="text-[15px]"
+              />
+              <div className="flex justify-end mt-2">
+                <Button
+                  type="submit"
+                  size="sm"
+                  loading={submitting}
+                  disabled={!content.trim()}
+                  className="text-[14.5px] hover:!bg-orange-700 hover:!text-white hover:!border-orange-500"
+                >
+                  Comment
+                </Button>
               </div>
             </div>
-          ))}
-        </div>
-      ) : items.length === 0 ? (
-        <div className="rounded-lg border border-dashed border-[var(--border)] p-6 text-center">
-          <p className="text-sm text-[var(--text-muted)]">No activity yet. Be the first to comment.</p>
-        </div>
-      ) : (
-        <div className="space-y-5">
-          {items.map((entry) => (
-            <ActivityItem
-              key={entry._id}
-              entry={entry}
-              currentUser={user}
-              onReply={handleReply}
-            />
-          ))}
-        </div>
-      )}
+          </form>
+        )}
+
+        {loading ? (
+          <div className="space-y-4">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="flex gap-3 animate-pulse">
+                <div className="w-6 h-6 rounded-full bg-[var(--bg-hover)] shrink-0" />
+                <div className="flex-1 space-y-2">
+                  <div className="h-3 w-32 rounded bg-[var(--bg-hover)]" />
+                  <div className="h-12 rounded-lg bg-[var(--bg-hover)]" />
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : items.length === 0 ? (
+          <div className="rounded-lg border border-dashed border-[var(--border)] p-6 text-center">
+            <p className="text-[15px] text-[var(--text-muted)]">No activity yet. Be the first to comment.</p>
+          </div>
+        ) : (
+          <div className="space-y-5">
+            {items.map((entry) => (
+              <ActivityItem
+                key={entry._id}
+                entry={entry}
+                currentUser={user}
+                onReply={handleReply}
+              />
+            ))}
+          </div>
+        )}
+      </div>
     </section>
   )
 }
