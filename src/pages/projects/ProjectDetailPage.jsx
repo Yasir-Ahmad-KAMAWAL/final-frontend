@@ -85,18 +85,35 @@ export default function ProjectDetailPage() {
 
       {/* Stats */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
-        {[
-          { label: 'Total issues', value: project.issueCount },
-          { label: 'Resolved', value: project.resolvedCount },
-          { label: 'Progress', value: `${pct}%` },
-          { label: 'Team', value: project.team.length },
-        ].map((s) => (
-          <div key={s.label} className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] px-3 py-2.5">
-            <p className="text-[11px] text-[var(--text-muted)]">{s.label}</p>
-            <p className="text-lg font-semibold text-[var(--text-primary)]">{s.value}</p>
-          </div>
-        ))}
+  {[
+    { label: 'Total issues', value: project.issueCount, color: 'blue' },
+    { label: 'Resolved', value: project.resolvedCount, color: 'emerald' },
+    { label: 'Progress', value: `${pct}%`, color: 'orange' },
+    { label: 'Team', value: project.team.length, color: 'purple' },
+  ].map((s) => {
+    const glowStyles = {
+      blue: 'shadow-[0_0_4px_0px_rgba(59,130,246,0.25)]',
+      emerald: 'shadow-[0_0_4px_0px_rgba(16,185,129,0.25)]',
+      orange: 'shadow-[0_0_4px_0px_rgba(249,115,22,0.25)]',
+      purple: 'shadow-[0_0_4px_0px_rgba(168,85,247,0.25)]',
+    }
+    const textStyles = {
+      blue: 'text-blue-600',
+      emerald: 'text-emerald-600',
+      orange: 'text-orange-600',
+      purple: 'text-purple-600',
+    }
+    return (
+      <div
+        key={s.label}
+        className={`rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] px-3 py-2.5 ${glowStyles[s.color]}`}
+      >
+        <p className="text-[11px] text-[var(--text-muted)]">{s.label}</p>
+        <p className={`text-xl font-semibold ${textStyles[s.color]}`}>{s.value}</p>
       </div>
+    )
+  })}
+</div>
 
       {/* Tabs */}
       <div className="flex items-center gap-2 mb-4 border-b border-[var(--border-subtle)] pb-2">
