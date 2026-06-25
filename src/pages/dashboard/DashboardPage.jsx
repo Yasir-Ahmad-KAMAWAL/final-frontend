@@ -145,7 +145,7 @@ export default function DashboardPage() {
                 </button>
               </div>
 
-              <div className="rounded-xl border border-[var(--border-subtle)] overflow-hidden divide-y divide-[var(--border-subtle)]">
+              <div className="rounded-xl border border-orange-400/50 overflow-hidden ">
                 {group.issues.map((issue) => (
                   <IssueRow key={issue._id} issue={issue} />
                 ))}
@@ -167,10 +167,10 @@ export default function DashboardPage() {
 
       {/* Projects strip */}
       <div className="flex items-center justify-between mt-10 mb-3">
-        <h2 className="text-sm font-semibold text-[var(--text-secondary)]">Projects</h2>
+        <h2 className="text-sm font-semibold text-blue-700 px-1.5 py-0.5 rounded shadow-[0_0_0_1px_#3b82f6,0_0_8px_-2px_#3b82f6]">Projects</h2>
         <Link
           to="/projects"
-          className="text-xs text-blue-600 hover:text-orange-500 font-medium transition-colors duration-150"
+          className="text-xs shadow-[0_0_0_1px_#f97316,0_0_8px_-2px_#f97316] p-1 rounded-sm text-blue-600 hover:text-orange-500 font-medium transition-colors duration-150"
         >
           View all
         </Link>

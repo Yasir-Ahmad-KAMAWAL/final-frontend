@@ -10,7 +10,7 @@ export default function ProjectCard({ project }) {
   return (
     <Link
       to={`/projects/${project._id}`}
-      className="block rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4 hover:border-[var(--border)] hover:bg-[var(--bg-hover)] transition-colors group"
+      className="block rounded-xl bg-[var(--bg-card)] p-4 shadow-[0_0_0_1px_#3b82f6] hover:shadow-[0_0_0_1px_#f97316,0_0_8px_-2px_#f97316] transition-shadow group"
     >
       <div className="flex items-start gap-3 mb-3">
         <span
