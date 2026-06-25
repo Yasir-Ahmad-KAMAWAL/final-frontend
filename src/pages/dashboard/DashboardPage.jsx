@@ -35,26 +35,26 @@ const GROUP_COLORS = {
 const STAT_STYLES = [
   {
     label: 'Open issues',
-    border: 'border-blue-200',
-    hover: 'hover:border-blue-400 hover:shadow-[0_0_0_3px_#dbeafe]',
+    border: 'shadow-[0_0_8px_-2px_#3b82f6]',
+    hover: 'hover:shadow-[0_0_16px_-2px_#3b82f6]',
     value: 'text-blue-700',
   },
   {
     label: 'In progress',
-    border: 'border-orange-200',
-    hover: 'hover:border-orange-400 hover:shadow-[0_0_0_3px_#ffedd5]',
+    border: 'shadow-[0_0_8px_-2px_#f97316]',
+    hover: 'hover:shadow-[0_0_16px_-2px_#f97316]',
     value: 'text-orange-600',
   },
   {
     label: 'Projects',
-    border: 'border-blue-200',
-    hover: 'hover:border-blue-400 hover:shadow-[0_0_0_3px_#dbeafe]',
+    border: 'shadow-[0_0_8px_-2px_#3b82f6]',
+    hover: 'hover:shadow-[0_0_16px_-2px_#3b82f6]',
     value: 'text-blue-700',
   },
   {
     label: 'Completed',
-    border: 'border-green-200',
-    hover: 'hover:border-green-400 hover:shadow-[0_0_0_3px_#dcfce7]',
+    border: 'shadow-[0_0_8px_-2px_#22c55e]',
+    hover: 'hover:shadow-[0_0_16px_-2px_#22c55e]',
     value: 'text-green-700',
   },
 ]

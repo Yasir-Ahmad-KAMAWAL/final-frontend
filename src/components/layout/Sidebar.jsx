@@ -50,7 +50,7 @@ export default function Sidebar({ mobileOpen, onClose }) {
         </NavLink>
       </div>
 
-      <div className="flex-1 overflow-y-auto px-2 py-3">
+      <div className="flex-1 overflow-y-auto px-2 py-3 scrollbar-hide">
         <nav className="space-y-0.5">
           {mainNav.map((item) => (
             <NavLink key={item.label} to={item.to} end={item.to === '/dashboard'} className={linkClass} onClick={onClose}>

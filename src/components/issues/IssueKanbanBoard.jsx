@@ -11,10 +11,10 @@ export default function IssueKanbanBoard({ issues }) {
         return (
           <div key={status} className="flex-shrink-0 w-[280px] flex flex-col">
             <div className="flex items-center gap-2 mb-2 px-1">
-              <span className="text-[13px] font-medium text-[var(--text-secondary)]">{status}</span>
-              <span className="text-[12px] text-[var(--text-muted)]">{columnIssues.length}</span>
+              <span className="text-[14px] text-blue-700 font-medium text-[var(--text-secondary)]">{status}</span>
+              <span className="text-[15px] font-semibold text-blue-700 text-[var(--text-muted)]">{columnIssues.length}</span>
             </div>
-            <div className="flex-1 rounded-lg bg-[var(--bg-hover)]/50 border border-[var(--border-subtle)] p-2 space-y-2 min-h-[200px]">
+            <div className="flex-1 rounded-lg bg-[var(--bg-hover)]/50 border border-blue-400/50 p-2 space-y-2 min-h-[200px]">
               {columnIssues.map((issue) => (
                 <IssueKanbanCard key={issue._id} issue={issue} />
               ))}

@@ -50,7 +50,7 @@ export default function IssueListPage() {
             value={priorityFilter}
             onChange={setPriorityFilter}
             options={priorityFilters.map((p) => ({ value: p, label: p === 'All' ? 'All priorities' : p }))}
-            triggerClassName="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs border border-[var(--border)] bg-[var(--bg-input)] text-[var(--text-secondary)] hover:bg-[var(--bg-hover)]"
+            triggerClassName="font-bold inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs bg-transparent text-blue-700 shadow-[0_0_0_1px_#3b82f6,0_0_8px_-2px_#3b82f6] transition-shadow duration-200 hover:shadow-[0_0_0_1px_#3b82f6,0_0_16px_-2px_#3b82f6]"
             menuClassName="min-w-[140px]"
           />
           <div className="flex rounded-lg border border-[var(--border)] overflow-hidden">
@@ -58,20 +58,24 @@ export default function IssueListPage() {
               <button
                 key={mode}
                 onClick={() => setViewMode(mode)}
-                className={`flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium transition-colors ${
+                className={`font-bold flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium rounded-md transition-shadow duration-200 ${
                   viewMode === mode
-                    ? 'bg-[var(--bg-active)] text-[var(--text-primary)]'
-                    : 'text-[var(--text-muted)] hover:bg-[var(--bg-hover)]'
+                    ? 'bg-transparent text-blue-700 shadow-[0_0_0_1px_#3b82f6,0_0_8px_-2px_#3b82f6]'
+                    : 'text-[var(--text-muted)] hover:text-orange-600 hover:shadow-[0_0_0_1px_#f97316,0_0_8px_-2px_#f97316]'
                 }`}
-              >
-                <Icon name={mode === 'Board' ? 'board' : 'list'} className="w-3.5 h-3.5" />
-                {mode}
+                >
+                  <Icon name={mode === 'Board' ? 'board' : 'list'} className="w-3.5 h-3.5" />
+                  {mode}
               </button>
             ))}
           </div>
-          <Button size="sm" onClick={() => navigate('/issues/new')}>
-            <Icon name="plus" className="w-4 h-4" />
-            New issue
+          <Button
+            size="sm"
+            onClick={() => navigate('/issues/new')}
+            className="bg-transparent shadow-[0_0_0_1px_#f97316,0_0_8px_-2px_#f97316] hover:shadow-[0_0_0_1px_#f97316,0_0_16px_-2px_#f97316] transition-shadow duration-200"
+          >
+            <Icon name="plus" className="w-4 h-4 text-orange-600" />
+            <span className="text-orange-600 font-semibold text-[13px]">New issue</span>
           </Button>
         </div>
       </div>
