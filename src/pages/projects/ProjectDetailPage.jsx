@@ -139,8 +139,8 @@ export default function ProjectDetailPage() {
               {projectIssues.map((issue) => (
                 <IssueRow key={issue._id} issue={issue} showProject={false} />
               ))}
-              <div className="bg-[var(--bg-card)] p-4 flex justify-center">
-                <Button size="sm" onClick={() => navigate('/issues/new')}>
+              <div className=" p-4 flex justify-center">
+                <Button className='hover:text-black hover:bg-orange-500 cursor-pointer' size="sm" onClick={() => navigate('/issues/new')}>
                   <Icon name="plus" className="w-4 h-4" />
                   Add issue
                 </Button>

@@ -101,18 +101,18 @@ export default function IssueForm({ initial = {}, projects = [], onSubmit, loadi
       </div>
 
       <div>
-        <label className="block text-xs font-semibold text-[var(--text-secondary)] mb-2 tracking-wide uppercase">
+        <label className="block text-xs font-semibold text-[var(--text-secondary)] mb-2 tracking-wide uppercase ">
           Assignees
         </label>
         <AssigneePicker users={teamUsers} value={assigneeIds} onChange={setAssigneeIds} />
         {teamUsers.length === 0 && (
-          <p className="text-[12px] text-[var(--text-muted)] mt-2">
+          <p className="text-[12px] cursor-pointer text-[var(--text-muted)] mt-2">
             Add team members to the project to assign this issue.
           </p>
         )}
       </div>
 
-      <Button className="border border-orange-800 bg-orange-800 text-white hover:bg-orange-900" type="submit" loading={loading}>
+      <Button className="text-white hover:text-black cursor-pointer hover:bg-orange-800" type="submit" loading={loading}>
         {submitLabel}
       </Button>
     </form>

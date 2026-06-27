@@ -13,7 +13,7 @@ const statuses = Object.values(PROJECT_STATUS).map((s) => ({ value: s, label: s 
 export default function ProjectStatusSelect({ value, onChange, size = 'md' }) {
   const isSm = size === 'sm'
 
-  const triggerClass = `inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--bg-input)] font-medium text-[var(--text-primary)] hover:border-[var(--border)] hover:bg-[var(--bg-hover)] transition-colors ${
+  const triggerClass = `inline-flex items-center gap-2 rounded-lg border border-orange-800 bg-[var(--bg-input)] font-medium text-[var(--text-primary)]  hover:bg-[var(--bg-hover)] transition-colors ${
     isSm ? 'px-2.5 py-1.5 text-xs' : 'px-3 py-2 text-sm'
   }`
 

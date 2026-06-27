@@ -26,6 +26,7 @@ export default function ProjectForm({ initial = {}, onSubmit, loading, submitLab
   return (
     <form onSubmit={handleSubmit} className="space-y-4 max-w-lg">
       <Input
+        className="border border-orange-800"
         label="Project name"
         value={name}
         onChange={(e) => { setName(e.target.value); setErrors((p) => ({ ...p, name: '' })) }}
@@ -33,6 +34,7 @@ export default function ProjectForm({ initial = {}, onSubmit, loading, submitLab
         error={errors.name}
       />
       <Textarea
+        className="border border-orange-800"
         label="Description"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
@@ -46,7 +48,11 @@ export default function ProjectForm({ initial = {}, onSubmit, loading, submitLab
         <ProjectStatusSelect value={status} onChange={setStatus} />
       </div>
       <div className="pt-2">
-        <Button type="submit" loading={loading}>
+        <Button
+          type="submit"
+          loading={loading}
+          className="bg-blue-500 text-black hover:bg-orange-500 cursor-pointer hover:text-black"
+        >
           {submitLabel}
         </Button>
       </div>

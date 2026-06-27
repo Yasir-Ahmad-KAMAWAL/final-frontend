@@ -41,9 +41,10 @@ export default function Sidebar({ mobileOpen, onClose }) {
           to="/projects/new"
           className="p-1 rounded text-[var(--text-muted)] hover:bg-[var(--bg-hover)] hover:text-[var(--text-primary)]"
           aria-label="New project"
+          title="Add new project"
           onClick={onClose}
         >
-          <Icon name="plus" className="w-4 h-4" />
+          <Icon name="plus" className="w-5 text-orange-700 h-5" />
         </NavLink>
       </div>
 

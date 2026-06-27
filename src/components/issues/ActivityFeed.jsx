@@ -39,14 +39,8 @@ export default function ActivityFeed({ issueId, refreshDep }) {
   }
 
   return (
-    <section
-      className="rounded-lg p-[1.5px]"
-      style={{
-        background: 'linear-gradient(135deg, #f97316, #3b82f6)',
-        boxShadow: '0 0 18px 2px rgba(249,115,22,0.2), 0 0 32px 4px rgba(59,130,246,0.15)',
-      }}
-    >
-      <div className="rounded-lg bg-[var(--bg-main)] p-5">
+    <section className="rounded-lg p-[1.5px] border border-orange-800">
+      <div className="rounded-lg bg-transparent p-5">
         <h3 className="text-[15px] font-semibold text-[var(--text-secondary)] mb-4">Activity</h3>
 
         {user && (
@@ -66,7 +60,7 @@ export default function ActivityFeed({ issueId, refreshDep }) {
                   size="sm"
                   loading={submitting}
                   disabled={!content.trim()}
-                  className="text-[14.5px] hover:!bg-orange-700 hover:!text-white hover:!border-orange-500"
+                  className="text-[14.5px] hover:!bg-orange-500 hover:text-black hover:!border-orange-500 cursor-pointer"
                 >
                   Comment
                 </Button>
@@ -95,6 +89,7 @@ export default function ActivityFeed({ issueId, refreshDep }) {
           <div className="space-y-5">
             {items.map((entry) => (
               <ActivityItem
+                
                 key={entry._id}
                 entry={entry}
                 currentUser={user}

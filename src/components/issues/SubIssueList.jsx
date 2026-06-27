@@ -55,9 +55,9 @@ export default function SubIssueList({ subIssues, onToggle, onAdd }) {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Add sub-issue..."
-          className="flex-1 px-3 py-2 rounded-lg text-sm border border-[var(--border)] bg-[var(--bg-input)] text-[var(--text-primary)] placeholder:text-[var(--text-muted)] outline-none focus:border-[var(--accent)]"
+          className="flex-1 px-3 py-2 rounded-lg text-sm border border-orange-800 bg-[var(--bg-input)] text-[var(--text-primary)] placeholder:text-[var(--text-muted)] outline-none focus:border-[var(--accent)]"
         />
-        <Button type="submit" size="sm" loading={adding} disabled={!title.trim()}>
+        <Button className='hover:text-black cursor-pointer hover:font-bold hover:bg-orange-500' type="submit" size="sm" loading={adding} disabled={!title.trim()}>
           Add
         </Button>
       </form>

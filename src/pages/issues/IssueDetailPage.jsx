@@ -175,7 +175,7 @@ export default function IssueDetailPage() {
         <ActivityFeed issueId={id} refreshDep={issue.updatedAt} />
       </section>
 
-      <Button variant="danger" size="sm" onClick={() => setShowDelete(true)}>
+      <Button className='cursor-pointer' variant="danger" size="sm" onClick={() => setShowDelete(true)}>
         Delete issue
       </Button>
 
