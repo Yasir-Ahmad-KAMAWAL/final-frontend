@@ -55,6 +55,7 @@ export default function AppRoutes() {
           <Route path="/projects/:id" element={<ProjectDetailPage />} />
           <Route path="/projects/:id/settings" element={<ProjectSettingsPage />} />
           <Route path="/issues" element={<IssueListPage />} />
+          <Route path="/issues/my" element={<IssueListPage isMine />} />
           <Route path="/issues/new" element={<CreateIssuePage />} />
           <Route path="/issues/:id" element={<IssueDetailPage />} />
           <Route path="/settings" element={<SettingsLayout />}>

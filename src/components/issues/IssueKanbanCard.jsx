@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import Badge from '../ui/Badge'
 import Avatar from '../ui/Avatar'
+import IssueFavoriteButton from './IssueFavoriteButton'
 
 export default function IssueKanbanCard({ issue }) {
   return (
@@ -10,7 +11,10 @@ export default function IssueKanbanCard({ issue }) {
     >
       <div className="flex items-center gap-2 mb-2">
         <span className="text-[11px] font-mono text-[var(--text-muted)]">{issue.key}</span>
-        <Badge type="priority" className="ml-auto">{issue.priority}</Badge>
+        <div className="flex items-center gap-1.5 ml-auto">
+          <IssueFavoriteButton issue={issue} />
+          <Badge type="priority">{issue.priority}</Badge>
+        </div>
       </div>
       <p className="text-[13px] font-medium text-[var(--text-primary)] line-clamp-2 mb-3">{issue.title}</p>
       <div className="flex items-center justify-between">

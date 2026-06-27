@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import { useAuth } from '../../hooks/useAuth'
@@ -30,9 +30,23 @@ export default function IssueDetailPage() {
     if (issue) setAssigneeIds(issue.assignees.map((a) => a._id))
   }, [issue?._id, issue?.assignees])
 
+  const isFavorited = user && issue?.favorite?.some((f) => String(f?._id ?? f) === String(user._id))
+
+  const handleFavorite = useCallback(async () => {
+    if (!user) return
+    try {
+      await toggleFavorite(id)
+      toast.success(isFavorited ? 'Removed from favorites' : 'Added to favorites')
+    } catch {
+      toast.error('Failed to update favorite')
+    }
+  }, [user, id, toggleFavorite, isFavorited])
+
   useSetPageHeader({
     title: issue ? `${issue.key}` : 'Issue',
     breadcrumb: issue?.projectName || 'Issues',
+    isFavorited: Boolean(isFavorited),
+    onFavoriteToggle: issue ? handleFavorite : null,
   })
 
   if (!issue) {
@@ -47,17 +61,9 @@ export default function IssueDetailPage() {
   const project = issue ? getProjectById(issue.projectId) : null
   const teamUsers = project?.team || []
 
-  const isFavorited = user && issue.favorite.some((f) => String(f) === String(user._id))
-
   const handleStatusChange = async (status) => {
     await updateIssue(id, { status, actor: user })
     toast.success('Status updated')
-  }
-
-  const handleFavorite = async () => {
-    if (!user) return
-    await toggleFavorite(id)
-    toast.success(isFavorited ? 'Removed from favorites' : 'Added to favorites')
   }
 
   const handleAssigneesChange = async (ids) => {

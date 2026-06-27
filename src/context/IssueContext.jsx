@@ -44,9 +44,11 @@ export function IssueProvider({ children }) {
   }
 
   const toggleFavorite = async (id) => {
-    const issue = await issuesApi.toggleFavorite(id)
-    await refresh()
-    return issue
+    const updated = await issuesApi.toggleFavorite(id)
+    setIssues((prev) =>
+      prev.map((i) => (i._id === id ? { ...i, ...updated, favorite: updated.favorite ?? i.favorite } : i))
+    )
+    return updated
   }
 
   const toggleSubIssue = async (issueId, subId) => {

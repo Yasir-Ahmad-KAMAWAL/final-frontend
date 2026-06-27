@@ -1,5 +1,6 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../hooks/useAuth'
 import { useIssues } from '../../hooks/useIssues'
 import { useSetPageHeader } from '../../hooks/useSetPageHeader'
 import { ISSUE_STATUS, ISSUE_PRIORITY } from '../../utils/constants'
@@ -15,11 +16,21 @@ const viewModes = ['Board', 'List']
 const statusFilters = ['All', ...Object.values(ISSUE_STATUS)]
 const priorityFilters = ['All', ...Object.values(ISSUE_PRIORITY)]
 
-export default function IssueListPage() {
-  useSetPageHeader({ title: 'Issues', breadcrumb: 'KabulTrack' })
+export default function IssueListPage({ isMine = false }) {
+  useSetPageHeader({ title: isMine ? 'My Issues' : 'Issues', breadcrumb: 'KabulTrack' })
 
   const navigate = useNavigate()
-  const { issues, loading } = useIssues()
+  const { user } = useAuth()
+  const { issues, loading, refresh } = useIssues()
+
+  useEffect(() => {
+    if (isMine) {
+      if (!user?._id) return
+      refresh({ assignees: user._id })
+      return () => refresh()
+    }
+    refresh()
+  }, [isMine, user?._id, refresh])
   const [viewMode, setViewMode] = useState('Board')
   const [statusFilter, setStatusFilter] = useState('All')
   const [priorityFilter, setPriorityFilter] = useState('All')

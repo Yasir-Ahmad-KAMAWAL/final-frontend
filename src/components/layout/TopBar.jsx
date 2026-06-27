@@ -5,7 +5,7 @@ import ThemeToggle from '../ui/ThemeToggle'
 import Button from '../ui/Button'
 import toast from 'react-hot-toast'
 
-export default function TopBar({ title, breadcrumb, onMenuOpen }) {
+export default function TopBar({ title, breadcrumb, isFavorited, onFavoriteToggle, onMenuOpen }) {
   const { logout } = useAuth()
   const navigate = useNavigate()
 
@@ -31,19 +31,28 @@ export default function TopBar({ title, breadcrumb, onMenuOpen }) {
         )}
         {breadcrumb && <Icon name="chevRight" className="w-3.5 h-3.5 text-[var(--text-muted)] shrink-0" />}
         <h1 className="font-medium text-[var(--text-primary)] truncate">{title}</h1>
-        <button className="p-0.5 rounded text-[var(--text-muted)] hover:text-[var(--text-secondary)]" aria-label="Favorite view">
-          <Icon name="star" className="w-3.5 h-3.5" />
-        </button>
+        {onFavoriteToggle && (
+          <button
+            type="button"
+            onClick={onFavoriteToggle}
+            className={`p-0.5 rounded transition-colors ${
+              isFavorited ? 'text-amber-400' : 'text-[var(--text-muted)] hover:text-[var(--text-secondary)]'
+            }`}
+            aria-label={isFavorited ? 'Remove from favorites' : 'Add to favorites'}
+          >
+            <Icon name="star" className="w-3.5 h-3.5" />
+          </button>
+        )}
       </div>
 
       <div className="flex-1" />
 
-      <button className="p-1.5 rounded-md text-[var(--text-muted)] hover:bg-[var(--bg-hover)] hover:text-[var(--text-primary)]" aria-label="Notifications">
+      {/* <button className="p-1.5 rounded-md text-[var(--text-muted)] hover:bg-[var(--bg-hover)] hover:text-[var(--text-primary)]" aria-label="Notifications">
         <Icon name="bell" className="w-4 h-4" />
       </button>
       <button className="p-1.5 rounded-md text-[var(--text-muted)] hover:bg-[var(--bg-hover)] hover:text-[var(--text-primary)]" aria-label="Filter">
         <Icon name="filter" className="w-4 h-4" />
-      </button>
+      </button> */}
       <ThemeToggle />
       <Button variant="ghost" size="sm" onClick={handleLogout} className="!px-2">
         <Icon name="logout" className="w-4 h-4" />

@@ -6,15 +6,14 @@ import Icon from '../ui/Icon'
 import Avatar from '../ui/Avatar'
 
 const mainNav = [
-  { label: 'Inbox', to: '/issues', icon: 'inbox' },
-  { label: 'My Issues', to: '/dashboard', icon: 'issues' },
+  { label: 'Dashboard', to: '/dashboard', icon: 'views', end: true },
+  { label: 'My Issues', to: '/issues/my', icon: 'issues' },
+  { label: 'Projects', to: '/projects', icon: 'projects', end: true },
+  { label: 'Settings', to: '/settings/profile', icon: 'settings' },
+  { label: 'Issues', to: '/issues', icon: 'issues', end: true },
 ]
 
-const workspaceNav = [
-  { label: 'Projects', to: '/projects', icon: 'projects' },
-  { label: 'Views', to: '/dashboard', icon: 'views' },
-  { label: 'Settings', to: '/settings/profile', icon: 'settings' },
-]
+
 
 export default function Sidebar({ mobileOpen, onClose }) {
   const { user } = useAuth()
@@ -37,11 +36,11 @@ export default function Sidebar({ mobileOpen, onClose }) {
             <Icon name="chevDown" className="w-3.5 h-3.5 shrink-0 text-[var(--text-muted)]" />
           </button>
         </div>
-        <button className="p-1 rounded text-[var(--text-muted)] hover:bg-[var(--bg-hover)] hover:text-[var(--text-primary)]" aria-label="Search">
+        {/* <button className="p-1 rounded text-[var(--text-muted)] hover:bg-[var(--bg-hover)] hover:text-[var(--text-primary)]" aria-label="Search">
           <Icon name="search" className="w-4 h-4" />
-        </button>
+        </button> */}
         <NavLink
-          to="/issues/new"
+          to="/projects/new"
           className="p-1 rounded text-[var(--text-muted)] hover:bg-[var(--bg-hover)] hover:text-[var(--text-primary)]"
           aria-label="New project"
           onClick={onClose}
@@ -53,41 +52,26 @@ export default function Sidebar({ mobileOpen, onClose }) {
       <div className="flex-1 overflow-y-auto px-2 py-3 scrollbar-hide">
         <nav className="space-y-0.5">
           {mainNav.map((item) => (
-            <NavLink key={item.label} to={item.to} end={item.to === '/dashboard'} className={linkClass} onClick={onClose}>
+            <NavLink key={item.label} to={item.to} end={item.end} className={linkClass} onClick={onClose}>
               <Icon name={item.icon} className="w-4 h-4" />
               {item.label}
             </NavLink>
           ))}
         </nav>
 
-        <p className="px-2.5 pt-5 pb-1.5 text-[11px] font-semibold uppercase tracking-wider text-[var(--text-muted)]">
-          Workspace
-        </p>
-        <nav className="space-y-0.5">
-          {workspaceNav.map((item) => (
-            <NavLink key={item.label} to={item.to} className={linkClass} onClick={onClose}>
-              <Icon name={item.icon} className="w-4 h-4" />
-              {item.label}
-            </NavLink>
-          ))}
-        </nav>
-
-        <p className="px-2.5 pt-5 pb-1.5 text-[11px] font-semibold uppercase tracking-wider text-[var(--text-muted)]">
-          Your teams
-        </p>
         <div className="space-y-0.5">
-          <button className="flex items-center gap-2 w-full px-2.5 py-1.5 rounded-md text-[13px] font-medium text-blue-400 bg-blue-500/10 ring-1 ring-blue-400/40 hover:bg-orange-500/10 hover:ring-orange-400/50 hover:text-orange-700 transition-all">
+          {/* <button className="flex items-center gap-2 w-full px-2.5 py-1.5 rounded-md text-[13px] font-medium text-blue-400 bg-blue-500/10 ring-1 ring-blue-400/40 hover:bg-orange-500/10 hover:ring-orange-400/50 hover:text-orange-700 transition-all">
             <span className="w-4 h-4 rounded bg-emerald-500/20 text-emerald-500 flex items-center justify-center text-[10px]">●</span>
             KabulTrack
-          </button>
-          <NavLink to="/issues" className={linkClass} onClick={onClose}>
+          </button> */}
+          {/* <NavLink to="/issues" className={linkClass} onClick={onClose}>
             <Icon name="issues" className="w-4 h-4" />
             Issues
           </NavLink>
           <NavLink to="/projects" className={linkClass} onClick={onClose}>
             <Icon name="projects" className="w-4 h-4" />
             Projects
-          </NavLink>
+          </NavLink> */}
         </div>
 
         <p className="px-2.5 pt-5 pb-1.5 text-[11px] font-semibold uppercase tracking-wider text-[var(--text-muted)]">
