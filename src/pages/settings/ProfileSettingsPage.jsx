@@ -53,7 +53,7 @@ export default function ProfileSettingsPage() {
         Update your name and avatar visible to your team.
       </p>
 
-      <div className="flex items-center gap-4 mb-8 p-4 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)]">
+      <div className="flex items-center gap-4 border border-orange-800 mb-8 p-4 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)]">
         <Avatar name={name || user.name} src={avatar || user.avatar} size="xl" />
         <div className="min-w-0">
           <p className="text-sm font-medium text-[var(--text-primary)] truncate">{name || user.name}</p>
@@ -64,6 +64,7 @@ export default function ProfileSettingsPage() {
 
       <form onSubmit={handleSubmit} className="space-y-4 max-w-md">
         <Input
+          className="border border-orange-800"
           label="Full name"
           value={name}
           onChange={(e) => { setName(e.target.value); setErrors((p) => ({ ...p, name: '' })) }}
@@ -72,6 +73,7 @@ export default function ProfileSettingsPage() {
         />
 
         <Input
+          className="border border-orange-800"
           label="Avatar URL"
           type="url"
           value={avatar}
@@ -80,6 +82,7 @@ export default function ProfileSettingsPage() {
         />
 
         <Input
+          className="border border-orange-800"
           label="Email"
           value={user.email}
           disabled
@@ -87,6 +90,7 @@ export default function ProfileSettingsPage() {
         />
 
         <Input
+          className="border border-orange-800"
           label="Username"
           value={user.username}
           disabled

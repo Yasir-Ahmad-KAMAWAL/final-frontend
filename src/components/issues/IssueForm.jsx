@@ -23,7 +23,7 @@ function FormDropdown({ label, value, onChange, options, error }) {
         onChange={onChange}
         options={options}
         className="w-full"
-        triggerClassName="w-full flex items-center justify-between gap-2 px-3.5 py-2.5 rounded-lg text-sm border border-[var(--border)] bg-[var(--bg-input)] text-[var(--text-primary)] hover:bg-[var(--bg-hover)] transition-colors"
+        triggerClassName="w-full flex items-center justify-between gap-2 px-3.5 py-2.5 rounded-lg text-sm border border-orange-800 bg-[var(--bg-input)] text-[var(--text-primary)] hover:bg-[var(--bg-hover)]  transition-colors"
         renderTrigger={(selected, open) => (
           <>
             <span>{selected?.label}</span>
@@ -70,6 +70,7 @@ export default function IssueForm({ initial = {}, projects = [], onSubmit, loadi
   return (
     <form onSubmit={handleSubmit} className="space-y-4 max-w-lg">
       <Input
+        className="border border-orange-800"
         label="Title"
         value={title}
         onChange={(e) => { setTitle(e.target.value); setErrors((p) => ({ ...p, title: '' })) }}
@@ -77,6 +78,7 @@ export default function IssueForm({ initial = {}, projects = [], onSubmit, loadi
         error={errors.title}
       />
       <Textarea
+        className="border border-orange-800"
         label="Description"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
@@ -85,6 +87,7 @@ export default function IssueForm({ initial = {}, projects = [], onSubmit, loadi
       />
       {projectOptions.length > 0 && (
         <FormDropdown
+          className="border border-orange-800"
           label="Project"
           value={projectId}
           onChange={setProjectId}
@@ -92,7 +95,7 @@ export default function IssueForm({ initial = {}, projects = [], onSubmit, loadi
           error={errors.projectId}
         />
       )}
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-2 gap-3 \">
         <FormDropdown label="Status" value={status} onChange={setStatus} options={statusOptions} />
         <FormDropdown label="Priority" value={priority} onChange={setPriority} options={priorityOptions} />
       </div>
@@ -109,7 +112,9 @@ export default function IssueForm({ initial = {}, projects = [], onSubmit, loadi
         )}
       </div>
 
-      <Button type="submit" loading={loading}>{submitLabel}</Button>
+      <Button className="border border-orange-800 bg-orange-800 text-white hover:bg-orange-900" type="submit" loading={loading}>
+        {submitLabel}
+      </Button>
     </form>
   )
 }

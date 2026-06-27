@@ -8,12 +8,10 @@ import Avatar from '../ui/Avatar'
 const mainNav = [
   { label: 'Dashboard', to: '/dashboard', icon: 'views', end: true },
   { label: 'My Issues', to: '/issues/my', icon: 'issues' },
+  { label: 'All Issues', to: '/issues', icon: 'issues', end: true },
   { label: 'Projects', to: '/projects', icon: 'projects', end: true },
   { label: 'Settings', to: '/settings/profile', icon: 'settings' },
-  { label: 'Issues', to: '/issues', icon: 'issues', end: true },
 ]
-
-
 
 export default function Sidebar({ mobileOpen, onClose }) {
   const { user } = useAuth()

@@ -38,7 +38,7 @@ export default function CreateIssuePage() {
         Back to issues
       </Link>
 
-      <h2 className="p-2 text-lg rounded-sm font-semibold text-blue-600 mb-1 bg-blue-500/10 shadow-[0_0_8px_2px_rgba(59,130,246,0.5)]">
+      <h2 className="p-2 text-lg rounded-sm font-semibold mb-1">
       Create issue
       </h2>
       <p className="p-2 text-sm text-[var(--text-muted)] mb-6">

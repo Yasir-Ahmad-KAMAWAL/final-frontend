@@ -123,13 +123,29 @@ export default function ProjectDetailPage() {
       {activeTab === 'Issues' && (
         <div className="rounded-lg border border-[var(--border-subtle)] overflow-hidden divide-y divide-[var(--border-subtle)]">
           {projectIssues.length === 0 ? (
-            <p className="text-sm text-[var(--text-muted)] text-center py-10">
-              No issues in this project yet.
-            </p>
+            <div className="text-center py-10 space-y-3">
+              <p className="text-sm text-[var(--text-muted)]">
+                No issues in this project yet.
+              </p>
+              <div className="flex justify-center">
+                <Button size="sm" onClick={() => navigate('/issues/new')}>
+                  <Icon name="plus" className="w-4 h-4" />
+                  Add issue
+                </Button>
+              </div>
+            </div>
           ) : (
-            projectIssues.map((issue) => (
-              <IssueRow key={issue._id} issue={issue} showProject={false} />
-            ))
+            <>
+              {projectIssues.map((issue) => (
+                <IssueRow key={issue._id} issue={issue} showProject={false} />
+              ))}
+              <div className="bg-[var(--bg-card)] p-4 flex justify-center">
+                <Button size="sm" onClick={() => navigate('/issues/new')}>
+                  <Icon name="plus" className="w-4 h-4" />
+                  Add issue
+                </Button>
+              </div>
+            </>
           )}
         </div>
       )}
