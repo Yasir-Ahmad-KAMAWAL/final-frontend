@@ -82,7 +82,7 @@ export default function ProfileSettingsPage() {
         />
 
         <Input
-          className="border border-orange-800"
+          className="border border-blue-800"
           label="Email"
           value={user.email}
           disabled
@@ -90,7 +90,7 @@ export default function ProfileSettingsPage() {
         />
 
         <Input
-          className="border border-orange-800"
+          className="border border-blue-800"
           label="Username"
           value={user.username}
           disabled
@@ -98,7 +98,7 @@ export default function ProfileSettingsPage() {
         />
 
         <div className="pt-2">
-          <Button className='hover:bg-orange-800 hover:text-black hover:font-semibold cursor-pointer' type="submit" loading={loading}>
+          <Button className='bg-blue-500 hover:bg-orange-500 hover:text-black hover:font-semibold cursor-pointer' type="submit" loading={loading}>
             Save changes
           </Button>
         </div>

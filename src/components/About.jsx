@@ -36,7 +36,7 @@ const About = () => {
         </p>
         <div className="flex flex-wrap items-center justify-center gap-3">
           <Link
-            to="/signup"
+            to="/"
             className="px-6 py-3 text-sm font-semibold text-white bg-orange-500 rounded-xl hover:bg-orange-600 transition-all duration-200"
           >
             Create free account

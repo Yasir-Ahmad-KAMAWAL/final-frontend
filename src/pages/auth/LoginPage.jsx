@@ -3,6 +3,11 @@ import { Link, useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import { useAuth } from '../../hooks/useAuth'
 import Logo from '../../components/ui/Logo'
+const LogoLink = ({ children }) => (
+  <Link to="/" className="inline-block hover:opacity-80 transition-opacity">
+    {children}
+  </Link>
+)
 import Input from '../../components/ui/Input'
 import Button from '../../components/ui/Button'
 import ThemeToggle from '../../components/ui/ThemeToggle'
@@ -110,7 +115,9 @@ export default function LoginPage() {
         {/* Form panel */}
         <div className="flex-1 bg-[var(--bg-card)] px-8 sm:px-12 py-8 flex flex-col justify-center">
           <div className="mb-7">
-            <Logo />
+            <LogoLink>
+              <Logo />
+            </LogoLink>
           </div>
 
           <h1 className="text-2xl sm:text-3xl font-bold text-[var(--text-primary)] mb-1">Welcome Back</h1>

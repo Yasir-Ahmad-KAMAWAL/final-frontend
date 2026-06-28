@@ -3,6 +3,7 @@ import { useAuth } from '../hooks/useAuth'
 import ProtectedRoute from './ProtectedRoute'
 import PublicRoute from './PublicRoute'
 import AppLayout from '../components/layout/AppLayout'
+import IntroductionPage from '../components/IntroductionPage'
 import LoginPage from '../pages/auth/LoginPage'
 import ForgotPasswordPage from '../pages/auth/ForgotPasswordPage'
 import ResetPasswordPage from '../pages/auth/ResetPasswordPage'
@@ -29,7 +30,10 @@ function HomeRedirect() {
       </div>
     )
   }
-  return <Navigate to={isAuthenticated ? '/dashboard' : '/login'} replace />
+  if (isAuthenticated) {
+    return <Navigate to="/dashboard" replace />
+  }
+  return <IntroductionPage />
 }
 
 export default function AppRoutes() {

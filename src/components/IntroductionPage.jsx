@@ -89,7 +89,7 @@ const IntroductionPage = () => {
             Log in
           </Link>
           <Link
-            to="/signup"
+            to="/register"
             className="px-4 py-2 text-sm font-semibold text-white bg-orange-500 rounded-lg hover:bg-orange-600 transition-all duration-200 whitespace-nowrap"
           >
             Sign up free
@@ -135,7 +135,7 @@ const IntroductionPage = () => {
               Log in
             </Link>
             <Link
-              to="/signup"
+              to="/register"
               className="text-sm font-semibold text-white bg-orange-500 px-4 py-2 rounded-lg text-center hover:bg-orange-600 transition-colors"
               onClick={() => setMenuOpen(false)}
             >
@@ -181,7 +181,7 @@ const IntroductionPage = () => {
           {/* CTA Buttons */}
           <div className="flex flex-wrap items-center justify-center gap-3 mb-16">
             <Link
-              to="/signup"
+              to="/register"
               className="px-7 py-3.5 text-base font-semibold text-white bg-orange-500 rounded-xl hover:bg-orange-600 transition-all duration-200 hover:-translate-y-0.5"
             >
               Get started for free

@@ -112,7 +112,7 @@ export default function IssueForm({ initial = {}, projects = [], onSubmit, loadi
         )}
       </div>
 
-      <Button className="text-white hover:text-black cursor-pointer hover:bg-orange-800" type="submit" loading={loading}>
+      <Button className="text-white hover:text-black cursor-pointer hover:bg-orange-500" type="submit" loading={loading}>
         {submitLabel}
       </Button>
     </form>
