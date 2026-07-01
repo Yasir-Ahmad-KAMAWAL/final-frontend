@@ -10,7 +10,14 @@ export default function ProjectCard({ project }) {
   return (
     <Link
       to={`/projects/${project._id}`}
-      className="block rounded-xl bg-[var(--bg-card)] p-4 shadow-[0_0_0_1px_#3b82f6] hover:shadow-[0_0_0_1px_#f97316,0_0_8px_-2px_#f97316] transition-shadow group"
+      className="block rounded-xl bg-[var(--bg-card)] p-4 shadow-[0_0_0_1px_var(--border-subtle)] transition-shadow group"
+      style={{ boxShadow: `0 0 0 1px ${project.color}` }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.boxShadow = `0 0 0 1px ${project.color}, 0 4px 14px -4px ${project.color}`
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.boxShadow = `0 0 0 1px ${project.color}`
+      }}
     >
       <div className="flex items-start gap-3 mb-3">
         <span
@@ -18,7 +25,10 @@ export default function ProjectCard({ project }) {
           style={{ backgroundColor: project.color }}
         />
         <div className="min-w-0 flex-1">
-          <h3 className="text-[13px] font-semibold text-[var(--text-primary)] truncate group-hover:text-[var(--accent)] transition-colors">
+          <h3
+            className="text-[13px] font-semibold text-[var(--text-primary)] truncate group-hover:text-[var(--accent)] transition-colors"
+            style={{ color: project.color }}
+          >
             {project.name}
           </h3>
           {project.description && (

@@ -84,6 +84,7 @@ export default function ProjectDetailPage() {
       </div>
 
       {/* Stats */}
+      {/* Stats */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
   {[
     { label: 'Total issues', value: project.issueCount, color: 'blue' },
@@ -91,11 +92,11 @@ export default function ProjectDetailPage() {
     { label: 'Progress', value: `${pct}%`, color: 'orange' },
     { label: 'Team', value: project.team.length, color: 'purple' },
   ].map((s) => {
-    const glowStyles = {
-      blue: 'shadow-[0_0_4px_0px_rgba(59,130,246,0.25)]',
-      emerald: 'shadow-[0_0_4px_0px_rgba(16,185,129,0.25)]',
-      orange: 'shadow-[0_0_4px_0px_rgba(249,115,22,0.25)]',
-      purple: 'shadow-[0_0_4px_0px_rgba(168,85,247,0.25)]',
+    const accentStyles = {
+      blue: 'border-l-blue-500',
+      emerald: 'border-l-emerald-500',
+      orange: 'border-l-orange-500',
+      purple: 'border-l-purple-500',
     }
     const textStyles = {
       blue: 'text-blue-600',
@@ -106,7 +107,7 @@ export default function ProjectDetailPage() {
     return (
       <div
         key={s.label}
-        className={`rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] px-3 py-2.5 ${glowStyles[s.color]}`}
+        className={`rounded-lg border border-[var(--border-subtle)] border-l-4 ${accentStyles[s.color]} bg-transparent px-3 py-2.5 transition-shadow duration-150 hover:shadow-sm`}
       >
         <p className="text-[11px] text-[var(--text-muted)]">{s.label}</p>
         <p className={`text-xl font-semibold ${textStyles[s.color]}`}>{s.value}</p>
@@ -118,6 +119,18 @@ export default function ProjectDetailPage() {
       {/* Tabs */}
       <div className="flex items-center gap-2 mb-4 border-b border-[var(--border-subtle)] pb-2">
         <Tabs tabs={detailTabs} active={activeTab} onChange={setActiveTab} />
+        {activeTab === 'Issues' && projectIssues.length > 0 && (
+          <div className="ml-auto">
+            <Button
+              size="sm"
+              className="bg-blue-500 hover:text-black hover:bg-orange-500 cursor-pointer"
+              onClick={() => navigate('/issues/new')}
+            >
+              <Icon name="plus" className="w-4 h-4" />
+              Add issue
+            </Button>
+          </div>
+        )}
       </div>
 
       {activeTab === 'Issues' && (
@@ -139,12 +152,6 @@ export default function ProjectDetailPage() {
               {projectIssues.map((issue) => (
                 <IssueRow key={issue._id} issue={issue} showProject={false} />
               ))}
-              <div className=" p-4 flex justify-center">
-                <Button className='hover:text-black hover:bg-orange-500 cursor-pointer' size="sm" onClick={() => navigate('/issues/new')}>
-                  <Icon name="plus" className="w-4 h-4" />
-                  Add issue
-                </Button>
-              </div>
             </>
           )}
         </div>

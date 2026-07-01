@@ -9,52 +9,27 @@ import Tabs from '../../components/ui/Tabs'
 import Button from '../../components/ui/Button'
 import Icon from '../../components/ui/Icon'
 
-const GROUP_ORDER = ['Open', 'In Progress', 'Resolved']
-const GROUP_LABELS = { Open: 'Todo', 'In Progress': 'In Progress', Resolved: 'Done' }
-
-// Color config per group
-const GROUP_COLORS = {
-  Open: {
-    badge: 'bg-orange-100 text-orange-800 border border-orange-200',
-    addBtn: 'hover:border-orange-400 hover:text-orange-500 hover:bg-orange-50',
-    section: 'border-orange-100',
-  },
-  'In Progress': {
-    badge: 'bg-blue-100 text-blue-800 border border-blue-200',
-    addBtn: 'hover:border-blue-400 hover:text-blue-500 hover:bg-blue-50',
-    section: 'border-blue-100',
-  },
-  Resolved: {
-    badge: 'bg-green-100 text-green-800 border border-green-200',
-    addBtn: 'hover:border-green-400 hover:text-green-500 hover:bg-green-50',
-    section: 'border-green-100',
-  },
-}
-
 // Summary card config
+// Summary card config — colored left border + matching value text, like the reference dashboard
 const STAT_STYLES = [
   {
     label: 'Open issues',
-    border: 'shadow-[0_0_8px_-2px_#3b82f6]',
-    hover: 'hover:shadow-[0_0_16px_-2px_#3b82f6]',
+    accent: 'border-l-blue-500',
     value: 'text-blue-700',
   },
   {
     label: 'In progress',
-    border: 'shadow-[0_0_8px_-2px_#f97316]',
-    hover: 'hover:shadow-[0_0_16px_-2px_#f97316]',
+    accent: 'border-l-orange-500',
     value: 'text-orange-600',
   },
   {
     label: 'Projects',
-    border: 'shadow-[0_0_8px_-2px_#3b82f6]',
-    hover: 'hover:shadow-[0_0_16px_-2px_#3b82f6]',
-    value: 'text-blue-700',
+    accent: 'border-l-purple-500',
+    value: 'text-purple-700',
   },
   {
     label: 'Completed',
-    border: 'shadow-[0_0_8px_-2px_#22c55e]',
-    hover: 'hover:shadow-[0_0_16px_-2px_#22c55e]',
+    accent: 'border-l-green-500',
     value: 'text-green-700',
   },
 ]
@@ -65,24 +40,18 @@ export default function DashboardPage() {
   const navigate = useNavigate()
   const { projects } = useProjects()
   const { issues } = useIssues()
-  const [viewTab, setViewTab] = useState('Active')
-  const viewTabs = ['All issues', 'Active', 'Backlog']
+  const [viewTab, setViewTab] = useState('All Issues')
+  const viewTabs = ['All Issues', 'Todo', 'In Progress']
 
   const totalIssues = projects.reduce((a, p) => a + p.issueCount, 0)
   const totalResolved = projects.reduce((a, p) => a + p.resolvedCount, 0)
 
   const filteredIssues =
-    viewTab === 'Backlog'
+    viewTab === 'Todo'
       ? issues.filter((i) => i.status === 'Open')
-      : viewTab === 'Active'
-        ? issues.filter((i) => i.status !== 'Resolved')
+      : viewTab === 'In Progress'
+        ? issues.filter((i) => i.status === 'In Progress')
         : issues
-
-  const grouped = GROUP_ORDER.map((status) => ({
-    status,
-    label: GROUP_LABELS[status],
-    issues: filteredIssues.filter((i) => i.status === status),
-  })).filter((g) => g.issues.length > 0 || viewTab === 'All issues')
 
   const stats = [
     totalIssues - totalResolved,
@@ -106,11 +75,12 @@ export default function DashboardPage() {
       </div>
 
       {/* Summary stats */}
+      {/* Summary stats */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
         {STAT_STYLES.map((s, i) => (
           <div
             key={s.label}
-            className={`rounded-xl border-[1.5px] px-4 py-3 transition-all duration-200 cursor-default ${s.bg} ${s.border} ${s.hover}`}
+            className={`bg-transparent rounded-lg border border-[var(--border-subtle,#e5e7eb)] border-l-4 ${s.accent} px-4 py-3 transition-shadow duration-150 cursor-default hover:shadow-sm`}
           >
             <p className="text-[11px] uppercase tracking-wide font-medium text-[var(--text-muted)] mb-1">
               {s.label}
@@ -120,47 +90,21 @@ export default function DashboardPage() {
         ))}
       </div>
 
-      {/* Issue groups */}
+      {/* Issue list */}
       <div className="space-y-4">
-        {grouped.map((group) => {
-          const colors = GROUP_COLORS[group.status]
-          return (
-            <section key={group.status}>
-              <div className="flex items-center gap-2 mb-1.5 px-1">
-                <button className="p-0.5 text-[var(--text-muted)] hover:text-[var(--text-secondary)]">
-                  <Icon name="chevDown" className="w-3.5 h-3.5" />
-                </button>
-                <span className="text-[13px] font-medium text-[var(--text-secondary)]">
-                  {group.label}
-                </span>
-                <span
-                  className={`text-[11px] font-medium px-2 py-0.5 rounded-full ${colors.badge}`}
-                >
-                  {group.issues.length}
-                </span>
-                <button
-                  className={`ml-auto p-0.5 rounded border border-transparent text-[var(--text-muted)] transition-all duration-150 ${colors.addBtn}`}
-                >
-                  <Icon name="plus" className="w-3.5 h-3.5" />
-                </button>
-              </div>
-
-              <div className="rounded-xl border border-orange-400/50 overflow-hidden ">
-                {group.issues.map((issue) => (
-                  <IssueRow key={issue._id} issue={issue} />
-                ))}
-              </div>
-            </section>
-          )
-        })}
-
-        {filteredIssues.length === 0 && (
+        {filteredIssues.length === 0 ? (
           <div className="text-center py-16 border border-dashed border-orange-200 rounded-xl bg-orange-50/40">
             <p className="text-sm text-[var(--text-muted)] mb-3">No issues in this view</p>
             <Button size="sm" onClick={() => navigate('/issues/new')}>
               <Icon name="plus" className="w-4 h-4" />
               Create issue
             </Button>
+          </div>
+        ) : (
+          <div className="rounded-xl border border-[var(--border-subtle)] overflow-hidden divide-y divide-[var(--border-subtle)]">
+            {filteredIssues.map((issue) => (
+              <IssueRow key={issue._id} issue={issue} />
+            ))}
           </div>
         )}
       </div>

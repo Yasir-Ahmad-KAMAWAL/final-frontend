@@ -3,9 +3,9 @@ import Dropdown from '../ui/Dropdown'
 import Icon from '../ui/Icon'
 
 const dotColors = {
-  Open: 'border-[var(--text-muted)]',
-  'In Progress': 'border-amber-500 bg-amber-500/20',
-  Resolved: 'border-emerald-500 bg-emerald-500/20',
+  Open: 'border-orange-700 bg-orange-700/20',
+  'In Progress': 'border-blue-600 bg-blue-600/20',
+  Resolved: 'border-emerald-600 bg-emerald-600/20',
 }
 
 const statuses = Object.values(ISSUE_STATUS).map((s) => ({ value: s, label: s }))

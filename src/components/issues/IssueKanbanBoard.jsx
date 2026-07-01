@@ -14,7 +14,7 @@ export default function IssueKanbanBoard({ issues }) {
               <span className="text-[14px] text-blue-700 font-medium text-[var(--text-secondary)]">{status}</span>
               <span className="text-[15px] font-semibold text-blue-700 text-[var(--text-muted)]">{columnIssues.length}</span>
             </div>
-            <div className="flex-1 rounded-lg bg-[var(--bg-hover)]/50 border border-blue-400/50 p-2 space-y-2 min-h-[200px]">
+            <div className="flex-1 rounded-lg bg-[var(--bg-hover)]/50 border border-orange-600 p-2 space-y-2 min-h-[200px]">
               {columnIssues.map((issue) => (
                 <IssueKanbanCard key={issue._id} issue={issue} />
               ))}

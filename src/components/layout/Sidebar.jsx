@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import { useAuth } from '../../hooks/useAuth'
 import { useProjects } from '../../hooks/useProjects'
+import { PROJECT_STATUS } from '../../utils/constants'
 import Logo from '../ui/Logo'
 import Icon from '../ui/Icon'
 import Avatar from '../ui/Avatar'
@@ -23,6 +24,12 @@ export default function Sidebar({ mobileOpen, onClose }) {
         ? 'bg-blue-500/10 ring-1 ring-blue-400/40 text-blue-400'
         : 'text-[var(--text-secondary)] hover:bg-orange-500/10 hover:ring-1 hover:ring-orange-400/50 hover:text-orange-700'
     }`
+
+  const statusDotClasses = {
+    [PROJECT_STATUS.PENDING]: 'bg-slate-400',
+    [PROJECT_STATUS.IN_PROGRESS]: 'bg-blue-700',
+    [PROJECT_STATUS.COMPLETED]: 'bg-green-500',
+  }
 
   const content = (
     <>
@@ -84,11 +91,29 @@ export default function Sidebar({ mobileOpen, onClose }) {
               className={linkClass}
               onClick={onClose}
             >
-              <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: p.color }} />
+              <span className={`w-2 h-2 rounded-full shrink-0 ${statusDotClasses[p.status] || 'bg-slate-400'}`} />
               <span className="truncate">{p.name}</span>
             </NavLink>
           ))}
         </nav>
+
+        <div className="mt-4 px-2.5 py-3 rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)] text-[12px] text-[var(--text-secondary)]">
+          <p className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-[var(--text-muted)]">Project status</p>
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-slate-400" />
+              <span>Pending</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-blue-700" />
+              <span>In Progress</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-green-500" />
+              <span>Completed</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="shrink-0 px-3 py-3 border-t border-[var(--border-subtle)]">

@@ -16,6 +16,19 @@ export default function Avatar({ name, src, size = 'md', className = '' }) {
     xl: 'w-12 h-12 text-sm',
   }
 
+  const palette = [
+    'bg-blue-500 text-white',
+    'bg-emerald-500 text-white',
+    'bg-violet-500 text-white',
+    'bg-indigo-500 text-white',
+    'bg-rose-500 text-white',
+    'bg-cyan-500 text-white',
+    'bg-fuchsia-500 text-white',
+    'bg-slate-600 text-white',
+  ]
+
+  const colorClass = palette[(name || '').split('').reduce((acc, ch) => acc + ch.charCodeAt(0), 0) % palette.length]
+
   if (src) {
     return (
       <img
@@ -28,7 +41,7 @@ export default function Avatar({ name, src, size = 'md', className = '' }) {
 
   return (
     <div
-      className={`rounded-full bg-[var(--accent-muted)] text-[var(--accent)] font-semibold flex items-center justify-center shrink-0 ${sizes[size]} ${className}`}
+      className={`rounded-full font-semibold flex items-center justify-center shrink-0 ${sizes[size]} ${colorClass} ${className}`}
     >
       {getInitials(name)}
     </div>

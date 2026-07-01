@@ -4,33 +4,40 @@ import Avatar from '../ui/Avatar'
 import IssueFavoriteButton from './IssueFavoriteButton'
 
 export default function IssueRow({ issue, showProject = true }) {
-  const statusDot = {
-    Open: 'border-[var(--text-muted)]',
-    'In Progress': 'border-amber-500',
-    Resolved: 'border-emerald-500 bg-emerald-500/20',
+  const statusLine = {
+    Open: 'bg-orange-400',
+    'In Progress': 'bg-blue-400',
+    Resolved: 'bg-emerald-400',
   }
 
   return (
     <Link
       to={`/issues/${issue._id}`}
-      className="group flex items-center gap-2.5 px-3 py-2.5 hover:bg-[var(--bg-hover)] transition-colors"
+      className="group flex items-center gap-3 px-3 py-2.5 hover:bg-[var(--bg-hover)] transition-colors"
     >
-      <span className="text-[12px] font-mono text-[var(--text-muted)] w-12 shrink-0">{issue.key}</span>
+      <span className={`w-[3px] h-6 rounded-full shrink-0 self-center ${statusLine[issue.status] || 'bg-slate-400'}`} />
+      <span className="text-[12px] font-mono text-[var(--text-muted)] w-[56px] shrink-0">{issue.key}</span>
       <IssueFavoriteButton issue={issue} />
-      <span className={`w-3 h-3 rounded-full border-2 shrink-0 ${statusDot[issue.status]}`} />
       <span className="text-[13px] text-[var(--text-primary)] truncate flex-1 min-w-0 group-hover:text-[var(--accent)] transition-colors">
         {issue.title}
       </span>
-      {showProject && issue.projectName && (
-        <span className="hidden lg:inline text-[11px] text-[var(--text-muted)] truncate max-w-[140px] shrink-0">
-          {issue.projectName}
+
+      <div className="ml-auto flex items-center gap-0.5 shrink-0">
+        {showProject && issue.projectName && (
+          <span className="hidden lg:inline text-[11px] text-[var(--text-muted)] truncate w-[120px] text-right">
+            {issue.projectName}
+          </span>
+        )}
+        <div className="flex justify-center w-[58px] shrink-0">
+          <Badge type="priority">{issue.priority}</Badge>
+        </div>
+        <div className="flex justify-center w-[24px] shrink-0">
+          {issue.assignees[0] && <Avatar name={issue.assignees[0].name} src={issue.assignees[0].avatar} size="sm" />}
+        </div>
+        <span className="text-[11px] text-[var(--text-muted)] shrink-0 hidden sm:block w-[56px] text-right">
+          {new Date(issue.updatedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
         </span>
-      )}
-      <Badge type="priority">{issue.priority}</Badge>
-      {issue.assignees[0] && <Avatar name={issue.assignees[0].name} src={issue.assignees[0].avatar} size="sm" />}
-      <span className="text-[11px] text-[var(--text-muted)] shrink-0 hidden sm:inline">
-        {new Date(issue.updatedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-      </span>
+      </div>
     </Link>
   )
 }
